@@ -1,19 +1,45 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from "react";
+import * as Font from "expo-font";
+import { AppLoading } from "expo";
+
+//+ React Navigation
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+
+// + Components
+import Home from "./screens/Home";
+import ReviewDetails from "./screens/ReviewDetails";
+import About from "./screens/About";
+
+// import {
+//   HomeStackNavigation,
+//   AboutStackNavigation,
+//   RootDrawNavigator,
+// } from "./routes/React_Navigations";
+import RootDrawNavigator from "./routes/React_Navigations";
+
+// const Stack = createStackNavigator();
+// const Drawer = createDrawerNavigator();
+
+const getFonts = () =>
+  Font.loadAsync({
+    "Nunito-Bold": require("./assets/fonts/Nunito-Bold.ttf"),
+    "Nunito-Regular": require("./assets/fonts/Nunito-Regular.ttf"),
+  });
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
-}
+  const [fontsLoaded, setFontsLoaded] = useState(false);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  if (fontsLoaded) {
+    return (
+      <NavigationContainer>
+        <RootDrawNavigator />
+      </NavigationContainer>
+    );
+  } else {
+    return (
+      <AppLoading startAsync={getFonts} onFinish={() => setFontsLoaded(true)} />
+    );
+  }
+}
