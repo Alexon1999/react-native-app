@@ -1,8 +1,7 @@
-import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import React from "react";
+import { StyleSheet, View, Text } from "react-native";
 
-import GlobalStyles from '../styles/Global';
-import Globalstyles from '../styles/Global';
+import Globalstyles from "../styles/Global";
 
 const About = () => {
   return (

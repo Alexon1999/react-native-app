@@ -44,7 +44,7 @@ export const HomeStackNavigation = () => {
               <Header title="My Home" navigation={navigation} />
             ),
             headerStyle: {
-              backgroundColor: "coral",
+              // backgroundColor: "coral",
               height: 60,
             },
           };
@@ -64,7 +64,7 @@ export const AboutStackNavigation = () => {
     <AboutStack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: "dodgerblue",
+          // backgroundColor: "dodgerblue",
           height: 60,
         },
       }}
