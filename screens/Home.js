@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { v4 as uuidv4 } from "uuid";
 
 import {
   StyleSheet,
@@ -8,6 +9,8 @@ import {
   Button,
   FlatList,
   TouchableOpacity,
+  TouchableWithoutFeedback,
+  Keyboard,
   Modal,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -48,7 +51,7 @@ function Home({ navigation }) {
   // + Add Review
   const addReview = (review) => {
     review.key = Math.floor(Math.random() * 10000).toString();
-    console.log(review.key);
+    // review.key = uuidv4();
     setReviews((prevReviews) => [review, ...prevReviews]);
 
     //+  et on ferme le modal
@@ -60,15 +63,17 @@ function Home({ navigation }) {
   return (
     <View style={GlobalStyles.container}>
       <Modal visible={modalOpen} animationType="slide">
-        <View style={styles.modalContent}>
-          <MaterialIcons
-            style={{ ...styles.modalToggle, ...styles.modalClose }}
-            name="close"
-            size={28}
-            onPress={() => setModalOpen(false)}
-          />
-          <ReviewForm addReview={addReview} />
-        </View>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.modalContent}>
+            <MaterialIcons
+              style={{ ...styles.modalToggle, ...styles.modalClose }}
+              name="close"
+              size={28}
+              onPress={() => setModalOpen(false)}
+            />
+            <ReviewForm addReview={addReview} />
+          </View>
+        </TouchableWithoutFeedback>
       </Modal>
 
       <MaterialIcons

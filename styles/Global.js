@@ -24,6 +24,13 @@ const Globalstyles = StyleSheet.create({
     // fontSize: 18,
     // fontFamily: "Nunito-Bold",
   },
+  errorText: {
+    color: "crimson",
+    fontWeight: "bold",
+    marginBottom: 6,
+    marginTop: 6,
+    textAlign: "center",
+  },
 });
 
 export default Globalstyles;
